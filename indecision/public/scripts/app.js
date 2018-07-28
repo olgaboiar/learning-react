@@ -1,30 +1,89 @@
 "use strict";
 
-var square = function square(x) {
-    return x * x;
-};
-function squareName(x) {
-    return x * x;
-}
+console.log('App.js is running!');
 
-// const squareArrow = (x) => {
-//     return x * x;
-// };
-var squareArrow = function squareArrow(x) {
-    return x * x;
-};
-// All arrow functions are anonymous 
-console.log(square(8));
-console.log(squareName(5));
-console.log(squareArrow(9));
-
-//challenge
-// const getFirstName = (fullName) => {
-//     return fullName.split(" ")[0];
-// };
-
-var getFirstName = function getFirstName(fullName) {
-    return fullName.split(" ")[0];
+//JSX
+var app = {
+    title: "Indecision App",
+    subtitle: "there",
+    options: ["one", "two"]
 };
 
-console.log(getFirstName('Maky Brown'));
+var template = React.createElement(
+    "div",
+    null,
+    React.createElement(
+        "h1",
+        null,
+        app.title
+    ),
+    React.createElement(
+        "p",
+        null,
+        app.subtitle ? app.subtitle : "No subtitle"
+    ),
+    app.subtitle && React.createElement(
+        "p",
+        null,
+        app.subtitle
+    ),
+    React.createElement(
+        "h4",
+        null,
+        app.options.length > 0 ? "Here are your options" : "No options"
+    ),
+    React.createElement(
+        "ol",
+        null,
+        React.createElement(
+            "li",
+            null,
+            "Item One"
+        ),
+        React.createElement(
+            "li",
+            null,
+            "Item Two"
+        )
+    )
+);
+
+var count = 0;
+var addOne = function addOne() {
+    console.log("addOne");
+};
+var minusOne = function minusOne() {
+    console.log("minusOne");
+};
+var reset = function reset() {
+    console.log("reset");
+};
+var templateTwo = React.createElement(
+    "div",
+    null,
+    React.createElement(
+        "h1",
+        null,
+        "Count: ",
+        count
+    ),
+    React.createElement(
+        "button",
+        { onClick: addOne },
+        "+1"
+    ),
+    React.createElement(
+        "button",
+        { onClick: minusOne },
+        "-1"
+    ),
+    React.createElement(
+        "button",
+        { onClick: reset },
+        "Reset"
+    )
+);
+console.log(templateTwo);
+var appRoot = document.getElementById('app');
+
+ReactDOM.render(templateTwo, appRoot);
